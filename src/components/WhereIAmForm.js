@@ -32,8 +32,11 @@ class WhereIAmForm extends Component {
     });
   }
 
+
+
   onFormSubmit = (event) => {
     event.preventDefault();
+    console.log(this.state)
 
     const newUser = {
       age: this.state.age,
@@ -41,7 +44,7 @@ class WhereIAmForm extends Component {
       educationLevel: this.state.educationLevel
     }
 
-    this.props.newUserCallback(newUser);
+    //this.props.newUserCallback(newUser);
   }
 
   render() {
@@ -58,16 +61,16 @@ class WhereIAmForm extends Component {
           />
         </div>
         <div>
-          <label htmlFor="educationlevel"> Current Education Level:</label>
+          <label htmlFor="educationlevel">Current Education Level:</label>
           <input 
             name="educationlevel" 
-            onChange={this.oneducationLevelChange}
+            onChange={this.onEducationLevelChange}
             value={this.state.educationLevel}
           />
         </div>
         <div>
           <label htmlFor="Savings">Current savings:</label>
-          <textarea
+          <input
             name="savings" 
             onChange={this.onSavingsChange}
             value={this.state.savings}
@@ -77,12 +80,10 @@ class WhereIAmForm extends Component {
       </form>
     );
   }
-
-
 }
 
-WhereIAmForm.propTypes = {
-  NewUSerCallback: PropTypes.func.isRequired,
-};
+//WhereIAmForm.propTypes = {
+ // NewUSerCallback: PropTypes.func.isRequired,
+//};
 
 export default WhereIAmForm;
