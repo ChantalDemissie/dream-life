@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as V from 'victory';
+
 import CustomLabel from './CustomLabel.js'
+import UnicodeDataSymbol from './UnicodeDataSymbol.js'
+
 import './SavingsTimeline.css'
 
-class SavingsTimeline extends Component {
+class SavingsTimeline extends React.Component {
   phases = {
     SAVING_FOR_A_HOUSE: 1,
     SAVING_FOR_RETIREMENT: 2,
@@ -22,8 +25,8 @@ class SavingsTimeline extends Component {
     this.phaseTransitionLabels.set(this.phases.SAVING_FOR_RETIREMENT, 'Retire');
 
     this.phaseTransitionSymbols = new Map();
-    this.phaseTransitionSymbols.set(this.phases.SAVING_FOR_A_HOUSE, "😻");
-    this.phaseTransitionSymbols.set(this.phases.SAVING_FOR_RETIREMENT, "😹"); 
+    this.phaseTransitionSymbols.set(this.phases.SAVING_FOR_A_HOUSE, "🏠");
+    this.phaseTransitionSymbols.set(this.phases.SAVING_FOR_RETIREMENT, "🌟"); 
 
     console.log("construct")
   }
@@ -96,6 +99,7 @@ class SavingsTimeline extends Component {
             data={this.phaseTransitions}
             x="age"
             y="savings"
+            dataComponent={<UnicodeDataSymbol />}
             labelComponent={<CustomLabel dy={-20} />}
           />
         </V.VictoryChart>

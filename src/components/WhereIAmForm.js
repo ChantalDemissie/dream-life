@@ -1,89 +1,105 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Container, Form } from 'react-bootstrap';
+//import CurrencyInput from 'react-currency-input';
 import './WhereIAmForm.css'
 
 class WhereIAmForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       age: '',
       savings: '',
-      educationLevel: '',
+      houseCost: '',
+      spendingPerYear: '',
+      desiredSavingsIncreasePerYear: '',
     };
+    this.onSubmit = this.onSubmit.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this);
   }
 
-  onAgeChange = (event) => {
+  handleFormChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
     this.setState({
-      age: event.target.value,
+      [name]: value
     });
   }
 
-  onSavingsChange = (event) => {
-    this.setState({
-      savings: event.target.value,
-    });
-  }
-
-  onEducationLevelChange = (event) => {
-    this.setState({
-      educationLevel: event.target.value,
-    });
-  }
-
-
-
-  onFormSubmit = (event) => {
+  onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
 
     const newUser = {
-      age: this.state.age,
-      savings: this.state.savings,
-      educationLevel: this.state.educationLevel
+      age: parseInt(this.state.age),
+      savings: parseFloat(this.state.savings),
+      houseCost: parseFloat(this.state.houseCost),
+      spendingPerYear: parseFloat(this.state.spendingPerYear),
+      desiredSavingsIncreasePerYear: parseFloat(this.state.desiredSavingsIncreasePerYear),
     }
 
-    //this.props.newUserCallback(newUser);
+    this.props.formCallback(newUser);
   }
 
   render() {
     return (
-      <form className="where-i-am-form" onSubmit={this.onFormSubmit}>
-        <h3>Input your information
-        </h3>
-        <div>
-          <label htmlFor="age">Age:</label>
-          <input 
-            age="age" 
-            onChange={this.onAgeChange}
-            value={this.state.age}
-          />
-        </div>
-        <div>
-          <label htmlFor="educationlevel">Current Education Level:</label>
-          <input 
-            name="educationlevel" 
-            onChange={this.onEducationLevelChange}
-            value={this.state.educationLevel}
-          />
-        </div>
-        <div>
-          <label htmlFor="Savings">Current savings:</label>
-          <input
-            name="savings" 
-            onChange={this.onSavingsChange}
-            value={this.state.savings}
-          />
-        </div>
-        <input className="btn btn-success new-user-form--submit" type="submit" name="submit" value="Next" />
-      </form>
+      <Container>
+        <Form onSubmit={this.onSubmit}>
+          <Form.Group controlId="userForm">
+            <Form.Label>Enter Your Age</Form.Label>
+            <Form.Control
+              type="number"
+              name="age"
+              value={this.state.age}
+              onChange={this.handleFormChange}
+            />
+
+            <Form.Label>Your Current Savings</Form.Label>
+            <Form.Control
+              type="number"
+              name="savings"
+              value={this.state.savings}
+              onChange={this.handleFormChange}
+            />
+            {/* <CurrencyInput
+              //type="input"
+              name="savings"
+              value={this.state.savings}
+              onChange={this.handleFormChange}
+            /> */}
+
+            <Form.Label>Your Ideal House Cost</Form.Label>
+            <Form.Control
+              type="number"
+              name="houseCost"
+              value={this.state.houseCost}
+              onChange={this.handleFormChange}
+            />
+
+            <Form.Label>Your Average Ideal Spending Per Year</Form.Label>
+            <Form.Control
+              type="number"
+              name="spendingPerYear"
+              value={this.state.spendingPerYear}
+              onChange={this.handleFormChange}
+            />
+
+            <Form.Label>Your Ideal Savings Per Year</Form.Label>
+            <Form.Control
+              type="number"
+              name="desiredSavingsIncreasePerYear"
+              value={this.state.desiredSavingsIncreasePerYear}
+              onChange={this.handleFormChange}
+            />
+
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+         </Button>
+        </Form>
+      </Container>
     );
   }
 }
-
-//WhereIAmForm.propTypes = {
- // NewUSerCallback: PropTypes.func.isRequired,
-//};
 
 export default WhereIAmForm;
