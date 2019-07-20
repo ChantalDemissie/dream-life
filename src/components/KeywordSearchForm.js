@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Col } from 'react-bootstrap';
 
 
 class KeywordSearchForm extends Component {
@@ -32,18 +32,24 @@ class KeywordSearchForm extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <Form.Group controlId="formSearchBar">
-          <Form.Label>Search Careers</Form.Label>
-          <Form.Control
-            type="search"
-            name="searchText"
-            value={this.state.searchText}
-            onChange={this.handleFormChange}
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <Form.Row>
+          <Col xs={10}>
+            <Form.Group controlId="formSearchBar">
+              <Form.Label className="sr-only">Search Careers</Form.Label>
+              <Form.Control
+                type="search"
+                name="searchText"
+                value={this.state.searchText}
+                onChange={this.handleFormChange}
+              />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Col>
+        </Form.Row>
       </Form>
     );
   }

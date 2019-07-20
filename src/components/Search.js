@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 
 import SavingsTimeline from './SavingsTimeline';
@@ -72,10 +72,21 @@ class Search extends React.Component {
 
     return (
       <Container>
-        <KeywordSearchForm
-          formCallback={this.searchCareers}
-        />
-        {careersTable}
+        <Row className="my-3">
+          <Col>
+            <h2 className="text-center">Search Careers</h2></Col>
+          <Col xs={6}>
+            <KeywordSearchForm
+              formCallback={this.searchCareers}
+            />
+          </Col>
+          <Col></Col>
+        </Row>
+        <Row>
+          <Col>
+            {careersTable}
+          </Col>
+        </Row>
       </Container>
     )
   }

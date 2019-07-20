@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 //import CurrencyInput from 'react-currency-input';
 import './WhereIAmForm.css'
 
-class WhereIAmForm extends Component {
+class WhereIAmForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,61 +43,67 @@ class WhereIAmForm extends Component {
 
   render() {
     return (
-      <Container>
-        <Form onSubmit={this.onSubmit}>
-          <Form.Group controlId="userForm">
-            <Form.Label>Enter Your Age</Form.Label>
-            <Form.Control
-              type="number"
-              name="age"
-              value={this.state.age}
-              onChange={this.handleFormChange}
-            />
+      <Form onSubmit={this.onSubmit}>
+        <Form.Group controlId="userForm">
+          <Form.Label>Enter Your Age</Form.Label>
+          <Form.Control
+            type="number"
+            name="age"
+            value={this.state.age}
+            onChange={this.handleFormChange}
+          />
+        </Form.Group>
 
-            <Form.Label>Your Current Savings</Form.Label>
-            <Form.Control
-              type="number"
-              name="savings"
-              value={this.state.savings}
-              onChange={this.handleFormChange}
-            />
-            {/* <CurrencyInput
+        <Form.Group controlId="userForm">
+          <Form.Label>Your Current Savings</Form.Label>
+          <Form.Control
+            type="number"
+            name="savings"
+            value={this.state.savings}
+            onChange={this.handleFormChange}
+          />
+          {/* <CurrencyInput
               //type="input"
               name="savings"
               value={this.state.savings}
               onChange={this.handleFormChange}
             /> */}
+        </Form.Group>
 
-            <Form.Label>Your Ideal House Cost</Form.Label>
-            <Form.Control
-              type="number"
-              name="houseCost"
-              value={this.state.houseCost}
-              onChange={this.handleFormChange}
-            />
+        <Form.Group controlId="userForm">
+          <Form.Label>Your Ideal House Cost</Form.Label>
+          <Form.Control
+            type="number"
+            name="houseCost"
+            value={this.state.houseCost}
+            onChange={this.handleFormChange}
+          />
+        </Form.Group>
 
-            <Form.Label>Your Average Ideal Spending Per Year</Form.Label>
-            <Form.Control
-              type="number"
-              name="spendingPerYear"
-              value={this.state.spendingPerYear}
-              onChange={this.handleFormChange}
-            />
+        <Form.Group controlId="userForm">
+          <Form.Label>Your Average Ideal Spending Per Year</Form.Label>
+          <Form.Control
+            type="number"
+            name="spendingPerYear"
+            value={this.state.spendingPerYear}
+            onChange={this.handleFormChange}
+          />
+        </Form.Group>
 
-            <Form.Label>Your Ideal Savings Per Year</Form.Label>
-            <Form.Control
-              type="number"
-              name="desiredSavingsIncreasePerYear"
-              value={this.state.desiredSavingsIncreasePerYear}
-              onChange={this.handleFormChange}
-            />
+        <Form.Group controlId="userForm">
+          <Form.Label>Your Ideal Savings Per Year</Form.Label>
+          <Form.Control
+            type="number"
+            name="desiredSavingsIncreasePerYear"
+            value={this.state.desiredSavingsIncreasePerYear}
+            onChange={this.handleFormChange}
+          />
+        </Form.Group>
 
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
+        <Button variant="primary" type="submit">
+          Submit
          </Button>
-        </Form>
-      </Container>
+      </Form>
     );
   }
 }
