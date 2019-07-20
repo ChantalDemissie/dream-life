@@ -6,11 +6,16 @@ import SavingsTimeline from './SavingsTimeline';
 
 import KeywordSearchForm from './KeywordSearchForm';
 import CareersTable from './CareersTable.js';
+import WhereIAmForm from './WhereIAmForm';
 
 class Search extends React.Component {
   searchSubmitted = false;
   state = {
     careers: [],
+  }
+
+  setUser = (user) => {
+    this.props.setUserCallback(user);
   }
 
   searchCareers = (searchText) => {
@@ -73,6 +78,10 @@ class Search extends React.Component {
 
     return (
       <Container>
+        <WhereIAmForm
+          formCallback={this.setUser}
+          user={this.props.user}
+        />
         <Row className="my-3">
           <Col>
             <h2 className="text-center">Search Careers</h2></Col>

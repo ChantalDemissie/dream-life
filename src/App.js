@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './bootstrap.min.css'
-
 import './App.css';
 
 import Home from './components/Home.js';
@@ -50,6 +49,7 @@ class App extends Component {
               {...props}
               user={this.state.user}
               onetClientname={this.onetClientname}
+              setUserCallback={this.setUser}
             />
           } />
         </Router>

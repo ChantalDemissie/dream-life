@@ -1,18 +1,27 @@
 import React from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
-//import CurrencyInput from 'react-currency-input';
+import { Button, Form } from 'react-bootstrap';
 import './WhereIAmForm.css'
 
 class WhereIAmForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      age: '',
-      savings: '',
-      houseCost: '',
-      spendingPerYear: '',
-      desiredSavingsIncreasePerYear: '',
-    };
+    if (props.user) {
+      this.state = {
+        age: props.user.age,
+        savings: props.user.savings,
+        houseCost: props.user.houseCost,
+        spendingPerYear: props.user.spendingPerYear,
+        desiredSavingsIncreasePerYear: props.user.desiredSavingsIncreasePerYear,
+      };
+    }  else {
+      this.state = {
+        age: '',
+        savings: '',
+        houseCost: '',
+        spendingPerYear: '',
+        desiredSavingsIncreasePerYear: '',
+      };
+    }
     this.onSubmit = this.onSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
   }
@@ -62,12 +71,6 @@ class WhereIAmForm extends React.Component {
             value={this.state.savings}
             onChange={this.handleFormChange}
           />
-          {/* <CurrencyInput
-              //type="input"
-              name="savings"
-              value={this.state.savings}
-              onChange={this.handleFormChange}
-            /> */}
         </Form.Group>
 
         <Form.Group controlId="userForm">
