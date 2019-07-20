@@ -41,6 +41,7 @@ class Search extends React.Component {
     // axios.all gathers the results promises
     //  this makes it synchronous
     axios.all(jobOutlookPromises).then((jobOutlooks) => {
+      console.log(jobOutlooks)
       let careers = jobOutlooks.map((jobOutlook, index) => {
         const occupation = occupations[index];
         const salary = jobOutlook.data.salary.annual_median;

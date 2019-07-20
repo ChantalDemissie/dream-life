@@ -45,7 +45,7 @@ class WhereIAmForm extends React.Component {
     return (
       <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="userForm">
-          <Form.Label>Enter Your Age</Form.Label>
+          <Form.Label>Your Age</Form.Label>
           <Form.Control
             type="number"
             name="age"

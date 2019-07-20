@@ -5,9 +5,10 @@ class CareersTable extends Component {
 
   render() {
     const careerRows = this.props.careers.map((career) => {
+      const link = 'https://www.mynextmove.org/profile/summary/' + career.code;
       return (
         <tr>
-          <td>{career.title}</td>
+          <td><a href={link} target="_blank"> {career.title}</a></td>
           <td>${career.annualMedianSalary.toLocaleString()}</td>
           <td>{career.savingsTimeline}</td>
         </tr>
