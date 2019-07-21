@@ -9,6 +9,7 @@ class WhereIAmForm extends React.Component {
       this.state = {
         age: props.user.age,
         savings: props.user.savings,
+        outstandingDebt: props.user.outstandingDebt,
         houseCost: props.user.houseCost,
         spendingPerYear: props.user.spendingPerYear,
         desiredSavingsIncreasePerYear: props.user.desiredSavingsIncreasePerYear,
@@ -17,6 +18,7 @@ class WhereIAmForm extends React.Component {
       this.state = {
         age: '',
         savings: '',
+        outstandingDebt: '',
         houseCost: '',
         spendingPerYear: '',
         desiredSavingsIncreasePerYear: '',
@@ -42,6 +44,7 @@ class WhereIAmForm extends React.Component {
     const newUser = {
       age: parseInt(this.state.age),
       savings: parseFloat(this.state.savings),
+      outstandingDebt: parseFloat(this.state.outstandingDebt),
       houseCost: parseFloat(this.state.houseCost),
       spendingPerYear: parseFloat(this.state.spendingPerYear),
       desiredSavingsIncreasePerYear: parseFloat(this.state.desiredSavingsIncreasePerYear),
@@ -69,6 +72,16 @@ class WhereIAmForm extends React.Component {
             type="number"
             name="savings"
             value={this.state.savings}
+            onChange={this.handleFormChange}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="userForm">
+          <Form.Label>Outstanding Debt</Form.Label>
+          <Form.Control
+            type="number"
+            name="outstandingDebt"
+            value={this.state.outstandingDebt}
             onChange={this.handleFormChange}
           />
         </Form.Group>

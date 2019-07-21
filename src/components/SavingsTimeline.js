@@ -136,7 +136,7 @@ class SavingsTimeline extends React.Component {
     cuts off at 80 years old
     */
 
-    this.savings = this.props.user.savings;
+    this.savings = this.props.user.savings - this.props.user.outstandingDebt;
 
     this.phase = this.phases.SAVING_FOR_A_HOUSE;
     // create an array of savings until cutoff age
