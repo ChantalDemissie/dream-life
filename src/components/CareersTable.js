@@ -10,6 +10,7 @@ class CareersTable extends Component {
         <tr>
           <td><a href={link} target="_blank"> {career.title}</a></td>
           <td>${career.annualMedianSalary.toLocaleString()}</td>
+          <td>{career.educationRequirements.join(", ")}</td>
           <td>{career.savingsTimeline}</td>
         </tr>
       );
@@ -21,6 +22,7 @@ class CareersTable extends Component {
           <tr>
             <th>Career</th>
             <th>Annual Median Salary</th>
+            <th>Education Requirements</th>
             <th>Savings Timeline Chart</th>
           </tr>
         </thead>
