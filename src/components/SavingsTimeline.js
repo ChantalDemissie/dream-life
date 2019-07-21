@@ -37,18 +37,26 @@ class SavingsTimeline extends React.Component {
 
     console.log("RENDER", this.props.jobSalary);
     return (
-      <div>
+      <div style={{display: "flex", flexWrap: "wrap"}}>
         <V.VictoryChart
-          domainPadding={20}
+          //domainPadding={20}
           theme={V.VictoryTheme.material}
+          width={600}
+          height={200}
+          padding={{left: 90, top: 50, right: 10, bottom: 50}}
+
         >
           <V.VictoryAxis
             // tickValues={[]}
             // tickFormat={["Q1", "Q2", "Q3", "Q4"]}
+            label="Age"
+            axisLabelComponent={<V.VictoryLabel dy={25} />}
           />
           <V.VictoryAxis
             dependentAxis
             tickFormat={(x) => (`$${x / 1000}k`)}
+            label="Savings"
+            axisLabelComponent={<V.VictoryLabel dy={-60} />}
           />
           <V.VictoryArea
             style={{

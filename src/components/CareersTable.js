@@ -8,9 +8,13 @@ class CareersTable extends Component {
       const link = 'https://www.mynextmove.org/profile/summary/' + career.code;
       return (
         <tr>
-          <td><a href={link} target="_blank"> {career.title}</a></td>
-          <td>${career.annualMedianSalary.toLocaleString()}</td>
-          <td>{career.educationRequirements.join(", ")}</td>
+          <td>
+            <a href={link} target="_blank"><b>{career.title}</b></a>
+            <ul>
+              <li>Annual Median Salary<br/><b>${career.annualMedianSalary.toLocaleString()}</b></li>
+              <li>Education Requirements<br/><b>{career.educationRequirements.join(", ")}</b></li>
+            </ul>
+          </td>
           <td>{career.savingsTimeline}</td>
         </tr>
       );
@@ -20,10 +24,10 @@ class CareersTable extends Component {
       <Table bordered hover>
         <thead>
           <tr>
-            <th>Career</th>
-            <th>Annual Median Salary</th>
-            <th>Education Requirements</th>
-            <th>Savings Timeline Chart</th>
+            <th style={{width: "25%"}}>Career</th>
+            {/* <th>Annual Median Salary</th>
+            <th>Education Requirements</th> */}
+            <th style={{width: "75%"}}>Savings Timeline</th>
           </tr>
         </thead>
         <tbody>
