@@ -56,8 +56,8 @@ class WhereIAmForm extends React.Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <Form.Group controlId="userForm">
-          <Form.Label>Your Age</Form.Label>
+        <Form.Group controlId="age">
+          <Form.Label>Age</Form.Label>
           <Form.Control
             type="number"
             name="age"
@@ -66,8 +66,8 @@ class WhereIAmForm extends React.Component {
           />
         </Form.Group>
 
-        <Form.Group controlId="userForm">
-          <Form.Label>Your Current Savings</Form.Label>
+        <Form.Group controlId="savings">
+          <Form.Label>Current Savings</Form.Label>
           <Form.Control
             type="number"
             name="savings"
@@ -76,7 +76,7 @@ class WhereIAmForm extends React.Component {
           />
         </Form.Group>
 
-        <Form.Group controlId="userForm">
+        <Form.Group controlId="outstandingDebt">
           <Form.Label>Outstanding Debt</Form.Label>
           <Form.Control
             type="number"
@@ -86,8 +86,8 @@ class WhereIAmForm extends React.Component {
           />
         </Form.Group>
 
-        <Form.Group controlId="userForm">
-          <Form.Label>Your Ideal House Cost</Form.Label>
+        <Form.Group controlId="houseCost">
+          <Form.Label>Ideal House Cost</Form.Label>
           <Form.Control
             type="number"
             name="houseCost"
@@ -96,8 +96,8 @@ class WhereIAmForm extends React.Component {
           />
         </Form.Group>
 
-        <Form.Group controlId="userForm">
-          <Form.Label>Your Average Ideal Spending Per Year</Form.Label>
+        <Form.Group controlId="spendingPerYear">
+          <Form.Label>Average Spending Per Year</Form.Label>
           <Form.Control
             type="number"
             name="spendingPerYear"
@@ -106,8 +106,8 @@ class WhereIAmForm extends React.Component {
           />
         </Form.Group>
 
-        <Form.Group controlId="userForm">
-          <Form.Label>Your Ideal Savings Per Year</Form.Label>
+        <Form.Group controlId="desiredSavingsIncreasePerYear">
+          <Form.Label>Ideal Savings Increase Per Year</Form.Label>
           <Form.Control
             type="number"
             name="desiredSavingsIncreasePerYear"

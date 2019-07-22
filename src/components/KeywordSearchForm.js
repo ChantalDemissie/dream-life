@@ -7,7 +7,7 @@ class KeywordSearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: null
+      searchText: props.searchText
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);

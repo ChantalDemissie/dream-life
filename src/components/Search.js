@@ -1,6 +1,8 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import queryString from 'query-string';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import './Search.css';
 
@@ -16,11 +18,20 @@ class Search extends React.Component {
     careers: [],
   }
 
+  constructor(props) {
+    super(props);
+    this.searchText = null;
+    if (props.searchText) {
+      this.searchCareers(props.searchText);
+    }
+  }
+
   setUser = (user) => {
     this.props.setUserCallback(user);
   }
 
   searchCareers = (searchText) => {
+    this.searchText = searchText;
     // https://services.onetcenter.org/reference/mnm/search
     const url = 'https://services.onetcenter.org/ws/mnm/search'
     axios.get(url, {
@@ -72,6 +83,10 @@ class Search extends React.Component {
     });
   }
 
+  createQueryFromUser() {
+    return queryString.stringify(this.props.user);
+  }
+
   render() {
     let careersTable = null;
     if (this.searchSubmitted === true) {
@@ -79,6 +94,10 @@ class Search extends React.Component {
         careers={this.state.careers}
       />;
     }
+
+    const searchText = this.props.searchText ? this.props.searchText : this.searchText;
+    const searchTextQuery = searchText ? `&searchText=${searchText}` : '';
+    const shareUrl = window.location.origin + '/search?' + this.createQueryFromUser() + searchTextQuery;
 
     return (
       <Container className="custom-container" fluid={true}>
@@ -88,10 +107,15 @@ class Search extends React.Component {
           </Col>
           <Col xs={6}>
             <KeywordSearchForm
+              searchText={this.props.searchText}
               formCallback={this.searchCareers}
             />
           </Col>
-          <Col></Col>
+          <Col>
+            <CopyToClipboard text={shareUrl}>
+              <Button>Share Link</Button>
+            </CopyToClipboard>
+          </Col>
         </Row>
 
         <Row>
