@@ -6,13 +6,17 @@ class CareersTable extends Component {
   render() {
     const careerRows = this.props.careers.map((career) => {
       const link = 'https://www.mynextmove.org/profile/summary/' + career.code;
+      let educationRequirements = 'Data not available for this career';
+      if (career.educationRequirements !== null) {
+        educationRequirements = career.educationRequirements.join(", ");
+      }
       return (
         <tr>
           <td>
             <a href={link} target="_blank"><b>{career.title}</b></a>
             <ul>
               <li>Annual Median Salary<br/><b>${career.annualMedianSalary.toLocaleString()}</b></li>
-              <li>Education Requirements<br/><b>{career.educationRequirements.join(", ")}</b></li>
+              <li>Education Requirements<br/><b>{educationRequirements}</b></li>
             </ul>
           </td>
           <td>{career.savingsTimeline}</td>

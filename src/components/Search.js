@@ -66,8 +66,14 @@ class Search extends React.Component {
       console.log(reports)
       let careers = reports.map((report, index) => {
         const occupation = occupations[index];
-        const salary = report.data.job_outlook.salary.annual_median;
-        const educationRequirements = report.data.education.education_usually_needed.category;
+        let salary = null;
+        if (report.data.job_outlook.salary) {
+          salary = report.data.job_outlook.salary.annual_median;
+        }
+        let educationRequirements = null;
+        if (report.data.education.education_usually_needed) {
+          educationRequirements = report.data.education.education_usually_needed.category;
+        }
         return {
           title: occupation.title,
           code: occupation.code,
@@ -81,6 +87,7 @@ class Search extends React.Component {
       });
       console.log(careers)
       careers = careers.filter(career => this.props.user.spendingPerYear <= 0.7 * career.annualMedianSalary);
+      careers = careers.filter(career => career.salary !== null);
       this.setState({
         careers: careers,
       });
