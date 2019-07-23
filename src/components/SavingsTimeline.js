@@ -31,6 +31,15 @@ class SavingsTimeline extends React.Component {
     console.log("construct")
   }
 
+  convertIntegerToDollarString(integer) {
+    if (integer >= 1E6) {
+      return  (`$${integer / 1E6}m`);
+    } else if (integer >= 1E3) {
+      return (`$${integer / 1000}k`);
+    }
+    return (`$${integer}`);
+  }
+
   render() {
     console.log("render")
     this.generate();
@@ -54,7 +63,7 @@ class SavingsTimeline extends React.Component {
           />
           <V.VictoryAxis
             dependentAxis
-            tickFormat={(x) => (`$${x / 1000}k`)}
+            tickFormat={(x) => this.convertIntegerToDollarString(x)}
             label="Savings"
             axisLabelComponent={<V.VictoryLabel dy={-60} />}
           />
