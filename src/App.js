@@ -82,6 +82,7 @@ class App extends Component {
   render() {
     return (
       <main className="App">
+        <h1 style={{ backgroundColor: "lightblue", paddingLeft: "10px" }}>DreamLife</h1>
         <Router>
           <Route exact path="/" render={
             (props) => <Home

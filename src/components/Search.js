@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, OverlayTrigger } from 'react-bootstrap';
 import axios from 'axios';
 import queryString from 'query-string';
 import CopyToClipboard from 'react-copy-to-clipboard';
@@ -16,6 +16,7 @@ class Search extends React.Component {
   searchSubmitted = false;
   state = {
     careers: [],
+    copiedLink: false
   }
 
   constructor(props) {
@@ -28,6 +29,9 @@ class Search extends React.Component {
 
   setUser = (user) => {
     this.props.setUserCallback(user);
+    if (this.searchText) {
+      this.searchCareers(this.searchText);
+    }
   }
 
   searchCareers = (searchText) => {
@@ -87,6 +91,21 @@ class Search extends React.Component {
     return queryString.stringify(this.props.user);
   }
 
+  renderTooltip = props => (
+    <div
+      {...props}
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        padding: '2px 10px',
+        color: 'white',
+        borderRadius: 3,
+        ...props.style,
+      }}
+    >
+      Copied link to clipboard!
+    </div>
+  );
+
   render() {
     let careersTable = null;
     if (this.searchSubmitted === true) {
@@ -100,37 +119,46 @@ class Search extends React.Component {
     const shareUrl = window.location.origin + '/search?' + this.createQueryFromUser() + searchTextQuery;
 
     return (
-      <Container className="custom-container" fluid={true}>
-        <Row className="my-3">
-          <Col>
-            <h2 className="text-center">Search Careers</h2>
-          </Col>
-          <Col xs={6}>
-            <KeywordSearchForm
-              searchText={this.props.searchText}
-              formCallback={this.searchCareers}
-            />
-          </Col>
-          <Col>
-            <CopyToClipboard text={shareUrl}>
-              <Button>Share Link</Button>
-            </CopyToClipboard>
-          </Col>
-        </Row>
+      <div>
+        <Container className="custom-container" fluid={true}>
+          <Row className="m-3">
+            <Col>
+              <h2 class="text-right">Search Careers</h2>
+            </Col>
+            <Col xs={6}>
+              <KeywordSearchForm
+                searchText={this.props.searchText}
+                formCallback={this.searchCareers}
+              />
+            </Col>
+            <Col>
+              <OverlayTrigger
+                placement="right-start"
+                delay={{ show: 250, hide: 300 }}
+                overlay={this.renderTooltip}
+                trigger={'hover'}
+              >
+                <CopyToClipboard text={shareUrl}>
+                  <Button>🔗 Share Link</Button>
+                </CopyToClipboard>
+              </OverlayTrigger>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col>
-            <WhereIAmForm
-              formCallback={this.setUser}
-              user={this.props.user}
-            />
-          </Col>
-          <Col xs={10}>
-            {careersTable}
-          </Col>
-          <Col></Col>
-        </Row>
-      </Container>
+          <Row>
+            <Col className="m-3" xs={2}>
+              <WhereIAmForm
+                formCallback={this.setUser}
+                user={this.props.user}
+              />
+            </Col>
+            <Col xs={9}>
+              {careersTable}
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
+      </div>
     )
   }
 }

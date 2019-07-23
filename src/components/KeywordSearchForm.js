@@ -33,7 +33,7 @@ class KeywordSearchForm extends Component {
     return (
       <Form onSubmit={this.onSubmit}>
         <Form.Row>
-          <Col xs={10}>
+          <Col xs={10}> 
             <Form.Group controlId="formSearchBar">
               <Form.Label className="sr-only">Search Careers</Form.Label>
               <Form.Control
