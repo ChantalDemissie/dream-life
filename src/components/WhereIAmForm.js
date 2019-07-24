@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Popover, OverlayTrigger } from 'react-bootstrap';
 import './WhereIAmForm.css'
 
 class WhereIAmForm extends React.Component {
@@ -53,9 +53,48 @@ class WhereIAmForm extends React.Component {
     this.props.formCallback(newUser);
   }
 
-  render() {
+  MoreInfoPopover(props) {
+    const popover = (
+      <Popover id="popover-basic">
+        <Popover.Title as="h3">{props.title}</Popover.Title>
+        <Popover.Content>{props.content}</Popover.Content>
+      </Popover>
+    );
+  
     return (
-      <Form onSubmit={this.onSubmit}>
+      <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+        <Button variant="outline-info">?</Button>
+      </OverlayTrigger>
+    );
+  } 
+
+  render() {
+    if (!Popover.Content || !Popover.Title) {
+      console.log("Popover content does not exist")
+    }
+
+    // const popover = (
+    //   <Popover id="popover-basic">
+    //     <Popover.Title as="h3">Popover right</Popover.Title>
+    //     <Popover.Content>
+    //       And here's some <strong>amazing</strong> content. It's very engaging.
+    //       right?
+    //     </Popover.Content>
+    //   </Popover>
+    // );
+    
+    // const Example = () => (
+    //   // <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+    //   <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+    //     <Button variant="success">Click me to see</Button>
+    //   </OverlayTrigger>
+    // );
+    
+
+    return (
+      <div>
+        {/* <Example /> */}
+        <Form onSubmit={this.onSubmit}>
         <Form.Group controlId="age">
           <Form.Label>Age</Form.Label>
           <Form.Control
@@ -67,7 +106,11 @@ class WhereIAmForm extends React.Component {
         </Form.Group>
 
         <Form.Group controlId="savings">
-          <Form.Label>Current Savings</Form.Label>
+          <Form.Label>Current Savings <this.MoreInfoPopover
+              title={'Current Savings'}
+              content={'This includes money you have that you do not plan to spend, as well as the value of real estate, financial assets (e.g., stocks and bonds), and other valuable property you own that you are willing to sell to put towards buying a house and retiring.'}
+            />
+          </Form.Label>
           <Form.Control
             type="number"
             name="savings"
@@ -120,6 +163,9 @@ class WhereIAmForm extends React.Component {
           Submit
          </Button>
       </Form>
+
+      </div>
+      
     );
   }
 }
