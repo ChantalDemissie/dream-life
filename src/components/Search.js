@@ -119,6 +119,8 @@ class Search extends React.Component {
       careersTable = <CareersTable
         careers={this.state.careers}
       />;
+    } else {
+      
     }
 
     const searchText = this.props.searchText ? this.props.searchText : this.searchText;
