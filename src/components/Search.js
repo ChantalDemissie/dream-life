@@ -120,7 +120,13 @@ class Search extends React.Component {
         careers={this.state.careers}
       />;
     } else {
-      
+      careersTable = (
+        <center>
+          <span style={{fontSize: "250px"}} role="img">☁️</span>
+          <br/>
+          <h1>Search for career keywords in the bar above.</h1>
+        </center>
+      );
     }
 
     const searchText = this.props.searchText ? this.props.searchText : this.searchText;
